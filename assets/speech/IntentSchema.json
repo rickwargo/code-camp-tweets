@@ -1,0 +1,33 @@
+{
+   "intents": [
+      {
+         "intent": "AMAZON.CancelIntent"
+      },
+      {
+         "intent": "AMAZON.StopIntent"
+      },
+      {
+         "intent": "AMAZON.HelpIntent"
+      },
+      {
+         "intent": "LatestTweets",
+         "slots": [
+            {
+               "name": "Count",
+               "type": "AMAZON.NUMBER"
+            },
+            {
+               "name": "User",
+               "type": "AMAZON.US_FIRST_NAME"
+            },
+            {
+               "name": "TweetCategory",
+               "type": "TWEET_CATEGORIES"
+            }
+         ]
+      },
+      {
+         "intent": "WhoTweeted"
+      }
+   ]
+}

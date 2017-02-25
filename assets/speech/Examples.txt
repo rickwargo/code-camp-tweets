@@ -1,0 +1,6 @@
+Q: What's the latest news?
+Q: What's the latest popular tweet?
+Q: What is the last 5 tweets?
+Q: What is the last tweet from Rick?
+Q: Who tweeted?
+Q: who shared?
