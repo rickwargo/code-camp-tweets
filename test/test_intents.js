@@ -240,7 +240,7 @@ describe('My Intents', function () {
             });
         });
 
-        context('#WhoTweeted', function () {
+        describe('#WhoTweeted', function () {
             it('should skip repeats of user names', function () {
                 get.resolves({statuses: [
                     {user: {name: 'alpha'}},
