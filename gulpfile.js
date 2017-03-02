@@ -31,10 +31,9 @@ var filePaths = {
     coverFiles: ['index.js', 'lib/**/*.js', 'config/**/*.js', '!lib/playground.js'],
     unitTestFiles: ['test/**/test_*.js', 'index.js', 'lib/**/*.js', 'config/**/*.js', '!lib/playground.js'],
     coverTestFiles: ['test/**/test_*.js'],
-    cleanFiles: ['./dist', './dist.zip', './coverage']
+    cleanFiles: ['./dist', './dist.zip', './coverage'],
+    server: '../../alexa-app-root/server'   // Change this to reflect where alexa-app-root is installed
 };
-
-var server = require('../../alexa-app-root/server');
 
 gulp.task('default', ['help']);
 
@@ -65,6 +64,7 @@ gulp.task('test-mock', 'Run unit tests against local server **', function () {
 });
 
 gulp.task('test-local', 'Run unit tests against local server **', function () {
+	var server = require(filePaths.server);
     var result,
         envs = testEnvironment('Local'),
         instance = server.start();
@@ -87,6 +87,7 @@ gulp.task('test-lambda', 'Run unit tests against AWS Lambda **', function () {
 });
 
 gulp.task('test-and-cover', 'Show coverage for tested code **', function () {
+	var server = require(filePaths.server);
     var envs = testEnvironment(),
         instance = server.start();
 
@@ -270,7 +271,7 @@ gulp.task('upload', 'Upload zip file to lambda', function (callback) {
 });
 
 gulp.task('watch-test', 'Watch for changed files and run unit tests when a file changes', function () {
-    return gulp.watch(filePaths.unitTestFiles, ['test-local']);
+    return gulp.watch(filePaths.unitTestFiles, ['test-mock']);
 });
 
 gulp.task('watch-lint', 'Watch for changed files and run lint of the file that has changed', function () {
