@@ -38,6 +38,43 @@ describe('My Intents', function () {
         afterEach(function () {
             get.restore();
         });
+        describe('#WhoTweeted', function () {
+            it('should skip repeats of user names', function () {
+                get.resolves({
+                    statuses: [
+                        {user: {name: 'alpha'}},
+                        {user: {name: 'beta'}},
+                        {user: {name: 'gamma'}},
+                        {user: {name: 'alpha'}},
+                        {user: {name: 'beta'}}
+                    ]
+                });
+                var result = request.intentRequest({name: 'WhoTweeted'});
+                return result.should.eventually.equal('<speak>Recent tweets were from: alpha, beta, and gamma.</speak>');
+            });
+
+            it('should say and more if more than MAX_USERS names', function () {
+                get.resolves({
+                    statuses: [
+                        {user: {name: 'alpha'}},
+                        {user: {name: 'beta'}},
+                        {user: {name: 'gamma'}},
+                        {user: {name: 'delta'}},
+                        {user: {name: 'epsilon'}},
+                        {user: {name: 'zeta'}},
+                        {user: {name: 'eta'}}
+                    ]
+                });
+                var result = request.intentRequest({name: 'WhoTweeted'});
+                return result.should.eventually.equal('<speak>Recent tweets were from: alpha, beta, gamma, delta, and epsilon.</speak>');
+            });
+
+            it('say no tweets if could not find any', function () {
+                get.resolves({statuses: []});
+                var result = request.intentRequest({name: 'WhoTweeted'});
+                return result.should.eventually.equal('<speak>' + Text.noRecentTweets + '</speak>');
+            });
+        });
 
         describe('#LatestTweets', function () {
             describe('response', function () {
@@ -239,40 +276,5 @@ describe('My Intents', function () {
                 });
             });
         });
-
-        describe('#WhoTweeted', function () {
-            it('should skip repeats of user names', function () {
-                get.resolves({statuses: [
-                    {user: {name: 'alpha'}},
-                    {user: {name: 'beta'}},
-                    {user: {name: 'gamma'}},
-                    {user: {name: 'alpha'}},
-                    {user: {name: 'beta'}}
-                ]});
-                var result = request.intentRequest({name: 'WhoTweeted'});
-                return result.should.eventually.equal('<speak>Recent tweets were from: alpha, beta, and gamma.</speak>');
-            });
-
-            it('should say and more if more than MAX_USERS names', function () {
-                get.resolves({statuses: [
-                    {user: {name: 'alpha'}},
-                    {user: {name: 'beta'}},
-                    {user: {name: 'gamma'}},
-                    {user: {name: 'delta'}},
-                    {user: {name: 'epsilon'}},
-                    {user: {name: 'zeta'}},
-                    {user: {name: 'eta'}}
-                ]});
-                var result = request.intentRequest({name: 'WhoTweeted'});
-                return result.should.eventually.equal('<speak>Recent tweets were from: alpha, beta, gamma, delta, and epsilon.</speak>');
-            });
-
-            it('say no tweets if could not find any', function () {
-                get.resolves({statuses: []});
-                var result = request.intentRequest({name: 'WhoTweeted'});
-                return result.should.eventually.equal('<speak>' + Text.noRecentTweets + '</speak>');
-            });
-        });
     });
 });
-

@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2015-2016 Rick Wargo. All Rights Reserved.
+// Copyright (c) 2015-2017 Rick Wargo. All Rights Reserved.
 //
 // Licensed under the MIT License (the "License"). You may not use this file
 // except in compliance with the License. A copy of the License is located at

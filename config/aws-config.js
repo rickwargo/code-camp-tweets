@@ -3,7 +3,7 @@
 
 module.exports = {
     region: 'us-east-1',
-    profile: 'alexa-skill-author',
+    profile: 'default',
     role: 'arn:aws:iam::100866613345:role/lambda_basic_execution',
     handler: 'index.handler',
     timeout: 3,

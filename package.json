@@ -21,7 +21,6 @@
     "alexa-app",
     "alexa-js",
     "alexa-app-server",
-    "webstorm",
     "template"
   ],
   "alexa": {
@@ -38,12 +37,6 @@
     "request-promise": "^4.1.1",
     "twitter": "^1.7.0",
     "uuid": "^3.0.1"
-  },
-  "aws": {
-    "accessKeyId": "",
-    "secretAccessKey": "",
-    "region": "us-east-1",
-    "sslEnabled": true
   },
   "devDependencies": {
     "chai": "^3.5.0",
