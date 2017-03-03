@@ -10,7 +10,7 @@ var app = require('./lib/app-starter'),
 
 Object.assign(app.dictionary, {
     tweet: ['tweet', 'tweets', 'item', 'items', 'story', 'stories', 'news', 'news item', 'news items', 'news story', 'news stories', 'post', 'posts', 'update', 'updates', 'message', 'messages'],
-    whats: ['what is', 'what\'s', 'about', 'give me', 'tell me'],
+    whats: ['what is', 'what are', 'what\'s', 'about', 'give me', 'tell me'],
     the: ['the', 'a', 'an']
 });
 
