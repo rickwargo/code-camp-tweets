@@ -10,7 +10,6 @@ var app = require('./lib/app-starter'),
 
 Object.assign(app.dictionary, {
     tweet: ['tweet', 'tweets', 'item', 'items', 'story', 'stories', 'news', 'news item', 'news items', 'news story', 'news stories', 'post', 'posts', 'update', 'updates', 'message', 'messages'],
-    latest: ['latest', 'last', 'recent', 'most recent'],
     whats: ['what is', 'what\'s', 'about', 'give me', 'tell me'],
     the: ['the', 'a', 'an']
 });
@@ -31,6 +30,8 @@ app.intent('LatestTweets', {
         TweetCategory: 'TWEET_CATEGORIES'
     },
     utterances: [
+        '{whats|} {the} {tweet}',
+        '{whats|} {-|Count} {tweet}',
         '{whats|} {the} {most|} {-|TweetCategory} {tweet}',
         '{whats|} {the} {most|} {-|TweetCategory} {-|Count} {tweet}',
         '{whats|} {the} {most|} {-|TweetCategory} {tweet} from {-|User}'
